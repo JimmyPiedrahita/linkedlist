@@ -8,4 +8,9 @@ public class Nodo<T> {
         this.siguiente = null;
         this.anterior = null;
     }
+
+    @Override
+    public String toString() {
+        return "Nodo(" + valor + ")";
+    }
 }
