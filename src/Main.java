@@ -8,9 +8,8 @@ public class Main {
         lista.agregarNodoInicio(3);
         lista.agregarNodoFinal(0);
         lista.agregarNodoInicio(10);
-
+        lista.agregarNodoConPosicion(5, 2);
+        lista.agregarNodoConPosicion(100, 0);
         lista.imprimirLista();
-        System.out.println(lista.cola.valor);
-
     }
 }
