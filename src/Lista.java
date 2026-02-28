@@ -13,6 +13,20 @@ public class Lista<T> {
         cabeza = nodoActual;
     }
 
+    public void agregarNodoFinal(T valor) {
+        Nodo<T> nuevoNodo = new Nodo<>(valor);
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+            return;
+        }
+        Nodo<T> nodoActual = cabeza;
+        while (nodoActual.siguiente != null) {
+            nodoActual = nodoActual.siguiente;
+        }
+        nuevoNodo.anterior = nodoActual;
+        nodoActual.siguiente = nuevoNodo;
+    }
+
     public void imprimirLista() {
         Nodo<T> nodoActual = cabeza;
         while (nodoActual != null) {
