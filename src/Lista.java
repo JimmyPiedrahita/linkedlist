@@ -4,6 +4,12 @@ public class Lista<T> {
 
     public void agregarNodoInicio(T valor) {
         Nodo<T> nodoActual = new Nodo<>(valor);
+        if (cabeza == null) {
+            cabeza = nodoActual;
+            return;
+        }
+        cabeza.anterior = nodoActual;
+        nodoActual.siguiente = cabeza;
         cabeza = nodoActual;
     }
 
@@ -14,5 +20,5 @@ public class Lista<T> {
             nodoActual = nodoActual.siguiente;
         }
     }
-    
+
 }
