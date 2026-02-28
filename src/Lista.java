@@ -1,11 +1,13 @@
 public class Lista<T> {
 
     Nodo<T> cabeza = null;
+    Nodo<T> cola = null;
 
     public void agregarNodoInicio(T valor) {
         Nodo<T> nodoActual = new Nodo<>(valor);
         if (cabeza == null) {
             cabeza = nodoActual;
+            cola = nodoActual;
             return;
         }
         cabeza.anterior = nodoActual;
@@ -17,6 +19,7 @@ public class Lista<T> {
         Nodo<T> nuevoNodo = new Nodo<>(valor);
         if (cabeza == null) {
             cabeza = nuevoNodo;
+            cola = nuevoNodo;
             return;
         }
         Nodo<T> nodoActual = cabeza;
@@ -25,6 +28,7 @@ public class Lista<T> {
         }
         nuevoNodo.anterior = nodoActual;
         nodoActual.siguiente = nuevoNodo;
+        cola = nuevoNodo;
     }
 
     public void imprimirLista() {
