@@ -44,8 +44,7 @@ public class Lista<T> {
     public void agregarNodoConPosicion(T valor, T valorRefencia) {
         Nodo<T> nuevoNodo = new Nodo<>(valor);
         if (cabeza == null) {
-            cabeza = nuevoNodo;
-            cola = nuevoNodo;
+            System.out.println("Lista vacia");
             return;
         }
         Nodo<T> nodoActual = cabeza;
