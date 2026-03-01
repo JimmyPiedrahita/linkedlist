@@ -33,6 +33,11 @@ public class Lista<T> {
 
     public void agregarNodoConPosicion(T valor, T valorRefencia) {
         Nodo<T> nuevoNodo = new Nodo<>(valor);
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+            cola = nuevoNodo;
+            return;
+        }
         Nodo<T> nodoActual = cabeza;
         while (nodoActual != null) {
             if (nodoActual.valor == valorRefencia) {
@@ -53,6 +58,34 @@ public class Lista<T> {
         System.out.println("No encontrado");
     }
 
+    public void eliminarNodo(T valorReferencia) {
+        if (cabeza == null) return;
+        Nodo<T> nodoActual = cabeza;
+        while (nodoActual != null) {
+            if (nodoActual.valor == valorReferencia) {
+                if (nodoActual == cabeza) {
+                    if (nodoActual.siguiente == null) {
+                        cabeza = null;
+                        return;
+                    }
+                    cabeza = nodoActual.siguiente;
+                    cabeza.anterior = null;
+                    return;
+                }
+                if (nodoActual == cola) {
+                    cola = nodoActual.anterior;
+                    cola.siguiente = null;
+                    return;
+                }
+                nodoActual.anterior.siguiente = nodoActual.siguiente;
+                nodoActual.siguiente.anterior = nodoActual.anterior;
+                return;
+            }
+            nodoActual = nodoActual.siguiente;
+        }
+        System.out.println("No encontrado");
+    }
+
     public void imprimirLista() {
         Nodo<T> nodoActual = cabeza;
         while (nodoActual != null) {
@@ -60,5 +93,4 @@ public class Lista<T> {
             nodoActual = nodoActual.siguiente;
         }
     }
-
 }
