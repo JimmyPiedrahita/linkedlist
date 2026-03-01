@@ -73,11 +73,11 @@ public class Lista<T> {
         Nodo<T> nodoActual = cabeza;
         while (nodoActual != null) {
             if (nodoActual.getValor() == valorReferencia) {
+                if (nodoActual == cabeza && nodoActual == cola) {
+                    cabeza = cola = null;
+                    return;
+                }
                 if (nodoActual == cabeza) {
-                    if (nodoActual.getSiguiente() == null) {
-                        cabeza = null;
-                        return;
-                    }
                     cabeza = nodoActual.getSiguiente();
                     cabeza.setAnterior(null);
                     return;
@@ -93,7 +93,6 @@ public class Lista<T> {
             }
             nodoActual = nodoActual.getSiguiente();
         }
-        System.out.println("No encontrado");
     }
 
     public void imprimirLista() {
