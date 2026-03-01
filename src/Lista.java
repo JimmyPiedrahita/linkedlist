@@ -20,30 +20,24 @@ public class Lista<T> {
     }
 
     public void agregarNodoInicio(T valor) {
-        Nodo<T> nodoActual = new Nodo<>(valor);
+        Nodo<T> nuevoNodo = new Nodo<>(valor);
         if (cabeza == null) {
-            cabeza = nodoActual;
-            cola = nodoActual;
+            cabeza = cola = nuevoNodo;
             return;
         }
-        cabeza.setAnterior(nodoActual);
-        nodoActual.setSiguiente(cabeza);
-        cabeza = nodoActual;
+        cabeza.setAnterior(nuevoNodo);
+        nuevoNodo.setSiguiente(cabeza);
+        cabeza = nuevoNodo;
     }
 
     public void agregarNodoFinal(T valor) {
         Nodo<T> nuevoNodo = new Nodo<>(valor);
         if (cabeza == null) {
-            cabeza = nuevoNodo;
-            cola = nuevoNodo;
+            cabeza = cola = nuevoNodo;
             return;
         }
-        Nodo<T> nodoActual = cabeza;
-        while (nodoActual.getSiguiente() != null) {
-            nodoActual = nodoActual.getSiguiente();
-        }
-        nuevoNodo.setAnterior(nodoActual);
-        nodoActual.setSiguiente(nuevoNodo);
+        cola.setSiguiente(nuevoNodo);
+        nuevoNodo.setAnterior(cola);
         cola = nuevoNodo;
     }
 

@@ -10,6 +10,7 @@ public class Main {
         lista.agregarNodoInicio(10);
         lista.agregarNodoConPosicion(5, 2);
         lista.agregarNodoConPosicion(100, 0);
+        lista.agregarNodoConPosicion(77, 100);
         lista.imprimirLista();
     }
 }
