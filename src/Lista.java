@@ -1,7 +1,23 @@
 public class Lista<T> {
 
-    Nodo<T> cabeza = null;
-    Nodo<T> cola = null;
+    private Nodo<T> cabeza = null;
+    private Nodo<T> cola = null;
+
+    public Nodo<T> getCabeza() {
+        return cabeza;
+    }
+
+    public void setCabeza(Nodo<T> cabeza) {
+        this.cabeza = cabeza;
+    }
+
+    public Nodo<T> getCola() {
+        return cola;
+    }
+
+    public void setCola(Nodo<T> cola) {
+        this.cola = cola;
+    }
 
     public void agregarNodoInicio(T valor) {
         Nodo<T> nodoActual = new Nodo<>(valor);
@@ -10,8 +26,8 @@ public class Lista<T> {
             cola = nodoActual;
             return;
         }
-        cabeza.anterior = nodoActual;
-        nodoActual.siguiente = cabeza;
+        cabeza.setAnterior(nodoActual);
+        nodoActual.setSiguiente(cabeza);
         cabeza = nodoActual;
     }
 
@@ -23,11 +39,11 @@ public class Lista<T> {
             return;
         }
         Nodo<T> nodoActual = cabeza;
-        while (nodoActual.siguiente != null) {
-            nodoActual = nodoActual.siguiente;
+        while (nodoActual.getSiguiente() != null) {
+            nodoActual = nodoActual.getSiguiente();
         }
-        nuevoNodo.anterior = nodoActual;
-        nodoActual.siguiente = nuevoNodo;
+        nuevoNodo.setAnterior(nodoActual);
+        nodoActual.setSiguiente(nuevoNodo);
         cola = nuevoNodo;
     }
 
@@ -40,20 +56,20 @@ public class Lista<T> {
         }
         Nodo<T> nodoActual = cabeza;
         while (nodoActual != null) {
-            if (nodoActual.valor == valorRefencia) {
+            if (nodoActual.getValor() == valorRefencia) {
                 if (nodoActual == cola) {
-                    nodoActual.siguiente = nuevoNodo;
-                    nuevoNodo.anterior = nodoActual;
+                    nodoActual.setSiguiente(nuevoNodo);
+                    nuevoNodo.setAnterior(nodoActual);
                     cola = nuevoNodo;
                     return;
                 }
-                nodoActual.siguiente.anterior = nuevoNodo;
-                nuevoNodo.siguiente = nodoActual.siguiente;
-                nuevoNodo.anterior = nodoActual;
-                nodoActual.siguiente = nuevoNodo;
+                nodoActual.getSiguiente().setAnterior(nuevoNodo);
+                nuevoNodo.setSiguiente(nodoActual.getSiguiente());
+                nuevoNodo.setAnterior(nodoActual);
+                nodoActual.setSiguiente(nuevoNodo);
                 return;
             }
-            nodoActual = nodoActual.siguiente;
+            nodoActual = nodoActual.getSiguiente();
         }
         System.out.println("No encontrado");
     }
@@ -62,26 +78,26 @@ public class Lista<T> {
         if (cabeza == null) return;
         Nodo<T> nodoActual = cabeza;
         while (nodoActual != null) {
-            if (nodoActual.valor == valorReferencia) {
+            if (nodoActual.getValor() == valorReferencia) {
                 if (nodoActual == cabeza) {
-                    if (nodoActual.siguiente == null) {
+                    if (nodoActual.getSiguiente() == null) {
                         cabeza = null;
                         return;
                     }
-                    cabeza = nodoActual.siguiente;
-                    cabeza.anterior = null;
+                    cabeza = nodoActual.getSiguiente();
+                    cabeza.setAnterior(null);
                     return;
                 }
                 if (nodoActual == cola) {
-                    cola = nodoActual.anterior;
-                    cola.siguiente = null;
+                    cola = nodoActual.getAnterior();
+                    cola.setSiguiente(null);
                     return;
                 }
-                nodoActual.anterior.siguiente = nodoActual.siguiente;
-                nodoActual.siguiente.anterior = nodoActual.anterior;
+                nodoActual.getAnterior().setSiguiente(nodoActual.getSiguiente());
+                nodoActual.getSiguiente().setAnterior(nodoActual.getAnterior());
                 return;
             }
-            nodoActual = nodoActual.siguiente;
+            nodoActual = nodoActual.getSiguiente();
         }
         System.out.println("No encontrado");
     }
@@ -90,7 +106,7 @@ public class Lista<T> {
         Nodo<T> nodoActual = cabeza;
         while (nodoActual != null) {
             System.out.println(nodoActual.toString());
-            nodoActual = nodoActual.siguiente;
+            nodoActual = nodoActual.getSiguiente();
         }
     }
 }
